@@ -22,13 +22,13 @@
 <br />
 <div align="center">
   <a href="#">
-    <img src="images/logo.png" alt="Logo Coming soon" width="80" height="80">
+    <img src="images/logo.png" alt="Logo Here" width="80" height="80">
   </a>
 
   <h3 align="center">Single Deadline Crowdfunding Campaign</h3>
 
   <p align="center">
-    A Crowdfunding campaign with a single deadline.
+    A Crowdfunding campaign with a single deadline (like kickstart).
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
     <br />
@@ -43,38 +43,10 @@
 
 
 
-<!-- TABLE OF CONTENTS -->
-<!-- <details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details> -->
-
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Single Deadline Crowdfunding Campaign is Decentralized app used for funding a project or venture by raising money from a large number of people, in modern times typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance.
+Single Deadline Crowdfunding Campaign is Decentralized App used for funding a project or venture by raising money from a large number of people, in modern times typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -84,9 +56,7 @@ Single Deadline Crowdfunding Campaign is Decentralized app used for funding a pr
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [Django Framework](https://www.djangoproject.com/)
-* [Python](https://www.python.org/)
-* [JavaScript](https://www.javascript.com/)
+* [React](https://www.djangoproject.com/)
 * [HMLT5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)
 * [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
 * [Bootstrap](https://getbootstrap.com)
@@ -101,25 +71,6 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 _Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at for social authentication [console.cloud.google.com/](console.cloud.google.com/)
-2. Create virtual environment, then activate it and install the required packages
-    ```sh
-   python3 -m venv <name-of-environment> && source <name-of-environment>/bin/activate  
-   ```
-   ```sh
-   python3 -m pip install -r requirements.txt  
-   ```
-3. Clone the repo
-   ```sh
-   git clone https://github.com/sisandla/single-deadline-crowdfunding.git && cd single-deadline-crowdfunding
-   ```
-4. Migrate and then run the server
-   ```sh
-   python3 manage.py migrate  
-   ```
-   ```sh
-   python3 manage.py runserver  
-   ```
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
