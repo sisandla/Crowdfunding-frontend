@@ -1,7 +1,7 @@
 import React from 'react';
-import PlayerViews from './PlayerViews';
+import DonateViews from './DonationViews';
 
-const exports = {...PlayerViews};
+const exports = {...DonateViews};
 
 const sleep = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds));
 
@@ -31,7 +31,7 @@ exports.SetWager = class extends React.Component {
         <br />
         <button
           onClick={() => parent.setWager(wager)}
-        >Set wager</button>
+        >Set Amount</button>
       </div>
     );
   }
@@ -40,10 +40,17 @@ exports.SetWager = class extends React.Component {
 exports.Deploy = class extends React.Component {
   render() {
     const {parent, wager, standardUnit} = this.props;
+    const todayDate = new Date();
+    // Campaigne to be funded within 10 days deadline
+    let iskhathi = todayDate.setTime(todayDate.getTime() + 10 * 86400000);
+    const d2 = new Date(iskhathi);
+    let ixesha = d2.toLocaleString('en-ZA', {day: 'numeric', month: '2-digit', year: 'numeric'});
+    // console.log(ixesha);
     return (
       <div>
-        Wager (pay to deploy): <strong>{wager}</strong> {standardUnit}
-        <br />
+        The amount to raise for the campaign (payable to the deployer's campaign): <strong>{wager}</strong> {standardUnit} by the date: <strong> {ixesha} </strong>
+        <br /> 
+
         <button
           onClick={() => parent.deploy()}
         >Deploy</button>
