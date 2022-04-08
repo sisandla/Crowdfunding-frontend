@@ -6,8 +6,9 @@ import {renderDOM, renderView} from './views/render';
 import './index.css';
 import * as backend from './build/index.main.mjs';
 import {loadStdlib} from '@reach-sh/stdlib';
+
+
 const reach = loadStdlib(process.env);
-// reach.setWalletFallback(reach.walletFallback({}));
 const handToInt = {'ROCK': 0, 'PAPER': 1, 'SCISSORS': 2};
 const intToOutcome = ['Bob wins!', 'Draw!', 'Alice wins!'];
 const {standardUnit} = reach;
@@ -41,7 +42,7 @@ class App extends React.Component {
 }
 
 
-class Player extends React.Component {
+class Person extends React.Component {
   random() { return reach.hasRandom.random(); }
   async getHand() { // Fun([], UInt)
     const hand = await new Promise(resolveHandP => {
@@ -56,7 +57,7 @@ class Player extends React.Component {
 }
 
 
-class Deployer extends Player {
+class Deployer extends Person {
   constructor(props) {
     super(props);
     this.state = {view: 'SetWager'};
@@ -75,7 +76,7 @@ class Deployer extends Player {
 }
 
 
-class Attacher extends Player {
+class Attacher extends Person {
   constructor(props) {
     super(props);
     this.state = {view: 'Attach'};

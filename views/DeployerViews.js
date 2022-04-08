@@ -40,12 +40,15 @@ exports.SetWager = class extends React.Component {
 exports.Deploy = class extends React.Component {
   render() {
     const {parent, wager, standardUnit} = this.props;
+    
     const todayDate = new Date();
     // Campaigne to be funded within 10 days deadline
     let iskhathi = todayDate.setTime(todayDate.getTime() + 10 * 86400000);
+    console.log(iskhathi);
     const d2 = new Date(iskhathi);
     let ixesha = d2.toLocaleString('en-ZA', {day: 'numeric', month: '2-digit', year: 'numeric'});
-    // console.log(ixesha);
+    console.log(ixesha);
+    
     return (
       <div>
         The amount to raise for the campaign (payable to the deployer's campaign): <strong>{wager}</strong> {standardUnit} by the date: <strong> {ixesha} </strong>

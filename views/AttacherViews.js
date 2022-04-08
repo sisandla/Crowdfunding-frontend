@@ -53,6 +53,7 @@ exports.AcceptTerms = class extends React.Component {
   render() {
     const {wager, standardUnit, parent} = this.props;
     const {disabled} = this.state || {};
+    // Add deadline date needed for the campaign 
     return (
       <div>
         The Crowdfumding goal is: {wager} {standardUnit}
@@ -74,8 +75,8 @@ exports.WaitingForTurn = class extends React.Component {
   render() {
     return (
       <div>
-        Waiting for the other player...
-        <br />Think about which move you want to play.
+        Waiting for the fundraiser to accept terms...
+        <br />
       </div>
     );
   }
