@@ -46,7 +46,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Single Deadline Crowdfunding Campaign is Decentralized App used for funding a project or venture by raising money from a large number of people, in modern times typically via the Internet. Crowdfunding is a form of crowdsourcing and alternative finance.
+Single Deadline Crowdfunding Campaign is Decentralized App wherein a Fundraiser requests a funding amount, which is provided by Donors if a reserve is reached before the funding window closes, after which it is either disbursed to the Fundraiser, or returned to the Donors.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
