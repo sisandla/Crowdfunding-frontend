@@ -59,6 +59,7 @@ export const main = Reach.App(() => {
   // this is were deployer (or fundraise accepts fundraise from attacher)
   var outcome = ACCEPT;
   invariant( balance() == 2 * amount && isOutcome(outcome) );
+  
   // if statement for ACCEPT or DECLINE
   if (outcome == ACCEPT) {
     commit();

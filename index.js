@@ -9,10 +9,11 @@ import {loadStdlib} from '@reach-sh/stdlib';
 
 
 const reach = loadStdlib(process.env);
-const handToInt = {'ROCK': 0, 'PAPER': 1, 'SCISSORS': 2};
-const intToOutcome = ['Bob wins!', 'Draw!', 'Alice wins!'];
+// reach.setWalletFallback(reach.walletFallback({}));
+const handToInt = {'ACCEPT': 0, 'DECLINE': 1};
+const intToOutcome = ['Bob accepts!', 'Alice accepts!'];
 const {standardUnit} = reach;
-const defaults = {defaultFundAmt: '10', defaultWager: '3', standardUnit};
+const defaults = {defaultFundAmt: '10', defaultAmount: '3', standardUnit};
 
 
 class App extends React.Component {
@@ -46,7 +47,7 @@ class Person extends React.Component {
   random() { return reach.hasRandom.random(); }
   async getHand() { // Fun([], UInt)
     const hand = await new Promise(resolveHandP => {
-      this.setState({view: 'GetHand', playable: true, resolveHandP});
+      this.setState({view: 'GetHand', acceptable: true, resolveHandP});
     });
     this.setState({view: 'WaitingForResults', hand});
     return handToInt[hand];
@@ -60,7 +61,7 @@ class Person extends React.Component {
 class Deployer extends Person {
   constructor(props) {
     super(props);
-    this.state = {view: 'SetWager'};
+    this.state = {view: 'SetAmount'};
   }
   setWager(wager) { this.setState({view: 'Deploy', wager}); }
   async deploy() {

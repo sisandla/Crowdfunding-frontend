@@ -17,15 +17,15 @@ exports.Wrapper = class extends React.Component {
   }
 }
 
-exports.SetWager = class extends React.Component {
+exports.SetAmount = class extends React.Component {
   render() {
-    const {parent, defaultWager, standardUnit} = this.props;
-    const wager = (this.state || {}).wager || defaultWager;
+    const {parent, defaultAmount, standardUnit} = this.props;
+    const wager = (this.state || {}).wager || defaultAmount;
     return (
       <div>
         <input
           type='number'
-          placeholder={defaultWager}
+          placeholder={defaultAmount}
           onChange={(e) => this.setState({wager: e.currentTarget.value})}
         /> {standardUnit}
         <br />

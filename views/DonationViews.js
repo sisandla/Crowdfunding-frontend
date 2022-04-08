@@ -7,23 +7,26 @@ const exports = {};
 
 exports.GetHand = class extends React.Component {
   render() {
-    const {parent, playable, hand} = this.props;
+    const {parent, acceptable, hand} = this.props;
+    console.log(parent);
+    console.log(acceptable);
     return (
       <div>
         {hand ? 'It was a draw! Pick again.' : ''}
         <br />
-        {!playable ? 'Please wait...' : ''}
+        {!acceptable ? 'Please wait...' : ''}
         <br />
         <button
-          disabled={!playable}
+          disabled={!acceptable}
           onClick={() => parent.playHand('ROCK')}
         >Accept Funds</button>
         <button
-          disabled={!playable}
+          disabled={!acceptable}
           onClick={() => parent.playHand('PAPER')}
         >Paper</button>
+        <br />
         <button
-          disabled={!playable}
+          disabled={!acceptable}
           onClick={() => parent.playHand('SCISSORS')}
         >Decline Funds</button>
       </div>
