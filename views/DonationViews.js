@@ -18,16 +18,12 @@ exports.GetHand = class extends React.Component {
         <br />
         <button
           disabled={!acceptable}
-          onClick={() => parent.playHand('ROCK')}
+          onClick={() => parent.playHand('ACCEPT')}
         >Accept Funds</button>
-        <button
-          disabled={!acceptable}
-          onClick={() => parent.playHand('PAPER')}
-        >Paper</button>
         <br />
         <button
           disabled={!acceptable}
-          onClick={() => parent.playHand('SCISSORS')}
+          onClick={() => parent.playHand('DECLINE')}
         >Decline Funds</button>
       </div>
     );
@@ -49,7 +45,7 @@ exports.Done = class extends React.Component {
     const {outcome} = this.props;
     return (
       <div>
-        Thank you for playing. The outcome of this game was:
+        Thank you for participating. The outcome are:
         <br />{outcome || 'Unknown'}
       </div>
     );
