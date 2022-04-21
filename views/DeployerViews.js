@@ -1,7 +1,7 @@
 import React from 'react';
-import DonateViews from './DonationViews';
+import PlayerViews from './PlayerViews';
 
-const exports = {...DonateViews};
+const exports = {...PlayerViews};
 
 const sleep = (milliseconds) => new Promise(resolve => setTimeout(resolve, milliseconds));
 
@@ -20,18 +20,18 @@ exports.Wrapper = class extends React.Component {
 exports.SetAmount = class extends React.Component {
   render() {
     const {parent, defaultAmount, standardUnit} = this.props;
-    const wager = (this.state || {}).wager || defaultAmount;
+    const amount = (this.state || {}).amount || defaultAmount;
     return (
       <div>
         <input
           type='number'
           placeholder={defaultAmount}
-          onChange={(e) => this.setState({wager: e.currentTarget.value})}
+          onChange={(e) => this.setState({amount: e.currentTarget.value})}
         /> {standardUnit}
         <br />
         <button
-          onClick={() => parent.setWager(wager)}
-        >Set Amount</button>
+          onClick={() => parent.setAmount(amount)}
+        >Set Donation amount</button>
       </div>
     );
   }
@@ -39,21 +39,11 @@ exports.SetAmount = class extends React.Component {
 
 exports.Deploy = class extends React.Component {
   render() {
-    const {parent, wager, standardUnit} = this.props;
-    
-    const todayDate = new Date();
-    // Campaigne to be funded within 10 days deadline
-    let iskhathi = todayDate.setTime(todayDate.getTime() + 10 * 86400000);
-    console.log(iskhathi);
-    const d2 = new Date(iskhathi);
-    let ixesha = d2.toLocaleString('en-ZA', {day: 'numeric', month: '2-digit', year: 'numeric'});
-    console.log(ixesha);
-    
+    const {parent, amount, standardUnit} = this.props;
     return (
       <div>
-        The amount to raise for the campaign (payable to the deployer's campaign): <strong>{wager}</strong> {standardUnit} by the date: <strong> {ixesha} </strong>
-        <br /> 
-
+        Donation amount (pay to deploy): <strong>{amount}</strong> {standardUnit}
+        <br />
         <button
           onClick={() => parent.deploy()}
         >Deploy</button>

@@ -1,7 +1,7 @@
 import React from 'react';
-import DonateViews from './DonationViews';
+import PlayerViews from './PlayerViews';
 
-const exports = {...DonateViews};
+const exports = {...PlayerViews};
 
 exports.Wrapper = class extends React.Component {
   render() {
@@ -15,7 +15,6 @@ exports.Wrapper = class extends React.Component {
   }
 }
 
-// Pasting attachers campaign contract hash
 exports.Attach = class extends React.Component {
   render() {
     const {parent} = this.props;
@@ -51,13 +50,12 @@ exports.Attaching = class extends React.Component {
 
 exports.AcceptTerms = class extends React.Component {
   render() {
-    const {wager, standardUnit, parent} = this.props;
+    const {amount, standardUnit, parent} = this.props;
     const {disabled} = this.state || {};
-    // Add deadline date needed for the campaign 
     return (
       <div>
-        The Crowdfumding goal is: {wager} {standardUnit}
-        {/* <br /> Wager: {wager} {standardUnit} */}
+        The requested donation amount of crowdfunding is:
+        <br /> Amount: {amount} {standardUnit}
         <br />
         <button
           disabled={disabled}
@@ -65,7 +63,7 @@ exports.AcceptTerms = class extends React.Component {
             this.setState({disabled: true});
             parent.termsAccepted();
           }}
-        >Accept terms and pay funds</button>
+        >Accept terms and pay amount</button>
       </div>
     );
   }
@@ -75,7 +73,7 @@ exports.WaitingForTurn = class extends React.Component {
   render() {
     return (
       <div>
-        Waiting for the fundraiser to accept terms...
+        Waiting for the other crowdfunding campaigner to accept terms...
         <br />
       </div>
     );

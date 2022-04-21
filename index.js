@@ -7,11 +7,10 @@ import './index.css';
 import * as backend from './build/index.main.mjs';
 import {loadStdlib} from '@reach-sh/stdlib';
 
-
 const reach = loadStdlib(process.env);
 // reach.setWalletFallback(reach.walletFallback({}));
-const handToInt = {'ACCEPT': 0, 'DECLINE': 1};
-const intToOutcome = ['Bob accepts!', 'Alice accepts!'];
+const handToInt = {'ROCK': 0, 'PAPER': 1, 'SCISSORS': 2};
+const intToOutcome = ['Bob wins!', 'Draw!', 'Alice wins!'];
 const {standardUnit} = reach;
 const defaults = {defaultFundAmt: '10', defaultAmount: '3', standardUnit};
 
@@ -43,11 +42,11 @@ class App extends React.Component {
 }
 
 
-class Person extends React.Component {
+class Player extends React.Component {
   random() { return reach.hasRandom.random(); }
   async getHand() { // Fun([], UInt)
     const hand = await new Promise(resolveHandP => {
-      this.setState({view: 'GetHand', acceptable: true, resolveHandP});
+      this.setState({view: 'GetHand', playable: true, resolveHandP});
     });
     this.setState({view: 'WaitingForResults', hand});
     return handToInt[hand];
@@ -58,16 +57,16 @@ class Person extends React.Component {
 }
 
 
-class Deployer extends Person {
+class Deployer extends Player {
   constructor(props) {
     super(props);
     this.state = {view: 'SetAmount'};
   }
-  setWager(wager) { this.setState({view: 'Deploy', wager}); }
+  setAmount(amount) { this.setState({view: 'Deploy', amount}); }
   async deploy() {
     const ctc = this.props.acc.contract(backend);
     this.setState({view: 'Deploying', ctc});
-    this.wager = reach.parseCurrency(this.state.wager); // UInt
+    this.amount = reach.parseCurrency(this.state.amount); // UInt
     this.deadline = {ETH: 10, ALGO: 100, CFX: 1000}[reach.connector]; // UInt
     backend.Alice(ctc, this);
     const ctcInfoStr = JSON.stringify(await ctc.getInfo(), null, 2);
@@ -77,7 +76,7 @@ class Deployer extends Person {
 }
 
 
-class Attacher extends Person {
+class Attacher extends Player {
   constructor(props) {
     super(props);
     this.state = {view: 'Attach'};
@@ -87,10 +86,10 @@ class Attacher extends Person {
     this.setState({view: 'Attaching'});
     backend.Bob(ctc, this);
   }
-  async acceptWager(wagerAtomic) { // Fun([UInt], Null)
-    const wager = reach.formatCurrency(wagerAtomic, 4);
+  async acceptamount(amountAtomic) { // Fun([UInt], Null)
+    const amount = reach.formatCurrency(amountAtomic, 4);
     return await new Promise(resolveAcceptedP => {
-      this.setState({view: 'AcceptTerms', wager, resolveAcceptedP});
+      this.setState({view: 'AcceptTerms', amount, resolveAcceptedP});
     });
   }
   termsAccepted() {

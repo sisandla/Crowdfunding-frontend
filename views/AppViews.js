@@ -8,7 +8,7 @@ exports.Wrapper = class extends React.Component {
     return (
       <div className="App">
         <header className="App-header" id="root">
-          <h1>Single Deadline Crowdfumding Campaign</h1>
+          <h1>Single Deadline Crowdfunding Campaign</h1>
           {content}
         </header>
       </div>
@@ -64,7 +64,7 @@ exports.DeployerOrAttacher = class extends React.Component {
           <button
             onClick={() => parent.selectDeployer()}
           >Deployer</button>
-          <br /> Set the amount you want to raise, start the contract campaign.
+          <br /> Set the donation amount, deploy the contract.
         </p>
         <p>
           <button
