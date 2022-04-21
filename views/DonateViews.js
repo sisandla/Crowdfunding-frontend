@@ -2,29 +2,30 @@ import React from 'react';
 
 const exports = {};
 
-// Donate views must be extended.
+// Player views must be extended.
 // It does not have its own Wrapper view.
 
 exports.GetHand = class extends React.Component {
   render() {
-    const {parent, acceptable, hand} = this.props;
-    console.log(parent);
-    console.log(acceptable);
+    const {parent, playable, hand} = this.props;
     return (
       <div>
         {hand ? 'It was a draw! Pick again.' : ''}
         <br />
-        {!acceptable ? 'Please wait...' : ''}
+        {!playable ? 'Please wait...' : ''}
         <br />
         <button
-          disabled={!acceptable}
-          onClick={() => parent.playHand('ACCEPT')}
-        >Accept Funds</button>
-        <br />
+          disabled={!playable}
+          onClick={() => parent.playHand('ROCK')}
+        >Rock</button>
         <button
-          disabled={!acceptable}
-          onClick={() => parent.playHand('DECLINE')}
-        >Decline Funds</button>
+          disabled={!playable}
+          onClick={() => parent.playHand('PAPER')}
+        >Paper</button>
+        <button
+          disabled={!playable}
+          onClick={() => parent.playHand('SCISSORS')}
+        >Scissors</button>
       </div>
     );
   }
@@ -45,7 +46,7 @@ exports.Done = class extends React.Component {
     const {outcome} = this.props;
     return (
       <div>
-        Thank you for participating. The outcome are:
+        Thank you for playing. The outcome of this game was:
         <br />{outcome || 'Unknown'}
       </div>
     );
