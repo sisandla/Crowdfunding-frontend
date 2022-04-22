@@ -5,27 +5,17 @@ const exports = {};
 // Player views must be extended.
 // It does not have its own Wrapper view.
 
-exports.GetHand = class extends React.Component {
+exports.DeployerAgreement = class extends React.Component {
   render() {
-    const {parent, playable, hand} = this.props;
+    const {parent, accepted} = this.props;
     return (
       <div>
-        {hand ? 'It was a draw! Pick again.' : ''}
-        <br />
-        {!playable ? 'Please wait...' : ''}
-        <br />
         <button
-          disabled={!playable}
-          onClick={() => parent.playHand('ROCK')}
-        >Rock</button>
+          onClick={() => parent.playHand('ACCEPTED')}
+        >Accept</button>
         <button
-          disabled={!playable}
-          onClick={() => parent.playHand('PAPER')}
-        >Paper</button>
-        <button
-          disabled={!playable}
-          onClick={() => parent.playHand('SCISSORS')}
-        >Scissors</button>
+          onClick={() => parent.playHand('DECLINED')}
+        >Decline</button>
       </div>
     );
   }

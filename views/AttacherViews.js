@@ -55,7 +55,12 @@ exports.AcceptTerms = class extends React.Component {
     return (
       <div>
         The requested donation amount of crowdfunding is:
-        <br /> Amount: {amount} {standardUnit}
+        <br /> 
+        <input
+          type='number'
+          placeholder={amount}
+          onChange={(e) => this.setState({amount: e.currentTarget.value})}
+        /> {standardUnit}
         <br />
         <button
           disabled={disabled}
@@ -69,11 +74,11 @@ exports.AcceptTerms = class extends React.Component {
   }
 }
 
-exports.WaitingForTurn = class extends React.Component {
+exports.WaitingForAgreement = class extends React.Component {
   render() {
     return (
       <div>
-        Waiting for the other crowdfunding campaigner to accept terms...
+        Waiting for the crowdfunding campaigner to accept terms...
         <br />
       </div>
     );

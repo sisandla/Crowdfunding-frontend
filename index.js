@@ -9,7 +9,7 @@ import {loadStdlib} from '@reach-sh/stdlib';
 
 const reach = loadStdlib(process.env);
 // reach.setWalletFallback(reach.walletFallback({}));
-const handToInt = {'ROCK': 0, 'PAPER': 1, 'SCISSORS': 2};
+const DonationAgreement = false; // {'ACCEPTED': false, 'DECLINED': true};
 const intToOutcome = ['Bob wins!', 'Draw!', 'Alice wins!'];
 const {standardUnit} = reach;
 const defaults = {defaultFundAmt: '10', defaultAmount: '3', standardUnit};
@@ -44,16 +44,18 @@ class App extends React.Component {
 
 class Player extends React.Component {
   random() { return reach.hasRandom.random(); }
+
+  //code for deployer agreement
   async getHand() { // Fun([], UInt)
-    const hand = await new Promise(resolveHandP => {
-      this.setState({view: 'GetHand', playable: true, resolveHandP});
+    const agreement = await new Promise(accepted => {
+      this.setState({view: 'DeployerAgreement', accepted});
     });
-    this.setState({view: 'WaitingForResults', hand});
-    return handToInt[hand];
+    this.setState({view: 'WaitingForResults', agreement});
+    return 1;
   }
   seeOutcome(i) { this.setState({view: 'Done', outcome: intToOutcome[i]}); }
   informTimeout() { this.setState({view: 'Timeout'}); }
-  playHand(hand) { this.state.resolveHandP(hand); }
+  playHand(hand) { this.state.agree(hand); }
 }
 
 
@@ -94,7 +96,7 @@ class Attacher extends Player {
   }
   termsAccepted() {
     this.state.resolveAcceptedP();
-    this.setState({view: 'WaitingForTurn'});
+    this.setState({view: 'WaitingForAgreement'});
   }
   render() { return renderView(this, AttacherViews); }
 }
