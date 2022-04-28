@@ -1,5 +1,7 @@
  'reach 0.1';
 
+const thresh_arr = Array(UInt, 3);
+
 const commonInterface = {
     informTimeout: Fun([], Null),
     getThreshold: Fun([Array(UInt, 3), UInt], UInt),
@@ -13,9 +15,10 @@ export const main = Reach.App(
         [Participant('Alice', {
             ...commonInterface,
             goal: UInt,
-            def1: UInt,
-            def2: UInt,
-            def3: UInt,
+            fundraiser1: UInt,
+            fundraiser2: UInt,
+            fundraiser3: UInt,
+            threshold: thresh_arr,
             setGoal: Fun([], UInt), //sets the goal for the fundraising campaign and returns it
             showBobAttached: Fun([], Null),
         }),
@@ -48,9 +51,10 @@ export const main = Reach.App(
             commit();
 
             //Inform all parties that the goal were published
+
             // commit();
 
-            //Bobs accept the goal
+            //Bobs accept the goal and thresholds
             B.only(() => {
                 const goalAccepted = declassify(interact.acceptGoal(goal));
                 // const firstRaise = declassify(interact.donate());
@@ -66,7 +70,7 @@ export const main = Reach.App(
             commit();
             
             A.only(() => {
-                const amt = declassify(interact.def1);
+                const amt = declassify(interact.fundraiser1);
             })
 
             A.publish(amt);
@@ -76,21 +80,17 @@ export const main = Reach.App(
             } else {
                 transfer(amt).to(A);
             }
-
             commit();
             
             A.only(() => {
-                const t1 = declassify(interact.def2);
+                const t1 = declassify(interact.fundraiser2);
             })
-
             A.publish(t1);
-
             commit();
             
             A.only(() => {
-                const t2 = declassify(interact.def3);
+                const t2 = declassify(interact.fundraiser3);
             })
-
             A.publish(t2);
 
             B.only(() => {
@@ -99,12 +99,12 @@ export const main = Reach.App(
 
             //Release the remaining funds
             transfer(balance()).to(B);
+
             commit();
 
             each([A, B], () => {
                 interact.seeDone();
             })
-
             exit();
         }
     );

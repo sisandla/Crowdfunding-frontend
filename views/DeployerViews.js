@@ -9,6 +9,7 @@ exports.Wrapper = class extends React.Component {
   render() {
     const {content} = this.props;
     return (
+      // this "className" is how class Deployer chooses this wrapper instead of the other
       <div className="Deployer">
         <h2>Deployer (Alice)</h2>
         {content}
@@ -19,30 +20,32 @@ exports.Wrapper = class extends React.Component {
 
 exports.SetAmount = class extends React.Component {
   render() {
-    const {parent, defaultAmount, standardUnit} = this.props;
-    const amount = (this.state || {}).amount || defaultAmount;
+    const {parent, defaultGoal, standardUnit} = this.props;
+    const goal = (this.state || {}).goal || defaultGoal;
+    const fundraiser1= (this.state || {}).fundraiser1 || 1;
+    const fundraiser2= (this.state || {}).fundraiser2 || 1;
+    const fundraiser3= (this.state || {}).fundraiser3 || 1;
     return (
       <div>
-        <input
-          type='number'
-          placeholder={defaultAmount}
-          onChange={(e) => this.setState({amount: e.currentTarget.value})}
-        /> {standardUnit}
-        <br />
+        <p>Goal:</p>
+        <input type='number' placeholder={defaultGoal} onChange={(e) => this.setState({goal: e.currentTarget.value})}/> 
+        {standardUnit}
+        <br></br>
         <button
-          onClick={() => parent.setAmount(amount)}
-        >Set Donation amount</button>
+          onClick={() => parent.setGoal(goal, fundraiser1, fundraiser2, fundraiser3)}
+        >Set donation goal</button>
       </div>
     );
   }
 }
 
+
 exports.Deploy = class extends React.Component {
   render() {
-    const {parent, amount, standardUnit} = this.props;
+    const {parent, goal, standardUnit, fundraiser1, fundraiser2, fundraiser3} = this.props;
     return (
       <div>
-        Donation amount (pay to deploy): <strong>{amount}</strong> {standardUnit}
+        Goal (pay to deploy): <strong>{goal}</strong> {standardUnit}
         <br />
         <button
           onClick={() => parent.deploy()}
@@ -86,6 +89,22 @@ exports.WaitingForAttacher = class extends React.Component {
         >Copy to clipboard</button>
       </div>
     )
+  }
+}
+
+exports.DoneeAgreement = class extends React.Component {
+  render() {
+    const {parent, accepted} = this.props;
+    return (
+      <div>
+        <button
+          onClick={() => parent.doAgreement('ACCEPTED')}
+        >Accept</button>
+        <button
+          onClick={() => parent.doAgreement('DECLINED')}
+        >Decline</button>
+      </div>
+    );
   }
 }
 

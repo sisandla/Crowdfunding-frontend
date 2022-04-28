@@ -70,7 +70,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 Your Name - [@SiveSa_](https://twitter.com/SiveSa_) - sisanlda@student.wethinkcode.co.za
 
-Project Link: [https://github.com/sisandla/single-deadline-crowdfunding/](https://github.com/sisandla/single-deadline-crowdfunding/)
+Project Link: [https://github.com/sisandla/Crowdfunding-frontend/](https://github.com/sisandla/single-deadline-crowdfunding/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
